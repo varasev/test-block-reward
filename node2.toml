@@ -1,0 +1,37 @@
+[parity]
+chain = "spec.json"
+base_path = "parity_data2"
+
+[ui]
+disable = true
+
+[network]
+port = 40303
+
+[rpc]
+apis = ["web3", "eth", "pubsub", "net", "parity", "parity_set", "parity_pubsub", "traces", "rpc", "shh", "shh_pubsub"]
+port = 9545
+
+[websockets]
+disable = true
+
+[ipc]
+disable = true
+
+[dapps]
+disable = true
+
+[secretstore]
+disable = true
+
+[ipfs]
+enable = false
+
+[account]
+password = ["pwd"]
+
+[mining]
+force_sealing = true
+min_gas_price = 1000000000
+engine_signer = "0x1a22d96792666863f429a85623e6d4ca173d26ab"
+reseal_on_txs = "none"
