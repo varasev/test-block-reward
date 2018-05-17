@@ -60,6 +60,7 @@ async function getBalances() {
             let address = user.keys[key];
             if (address) {
                 userBalance.keys[key] = await web3.eth.getBalance(address);
+                userBalance.keys[key] = web3.utils.fromWei(userBalance.keys[key], 'ether');
             }
         }
 

@@ -1,16 +1,21 @@
 {
-  "name": "bre",
+  "name": "testnetpoa",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run start-node-1 && node ./scripts/prepareNode2 && npm run start-node-2 && npm run watch",
+    "start-node-1": "parity --config ./config/node1.toml > /dev/null 2>&1 &",
+    "start-node-2": "parity --config ./config/node2.toml > /dev/null 2>&1 &",
+    "stop": "bash ./scripts/stop-nodes",
+    "watch": "node ./scripts/watch.js",
+    "clear": "npm run stop && bash ./scripts/clear.sh"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "interval-promise": "^1.1.1",
     "json2yaml": "^1.1.0",
+    "solc": "^0.4.21",
     "web3": "^1.0.0-beta.34"
   }
 }

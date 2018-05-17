@@ -1,5 +1,5 @@
 [parity]
-chain = "spec.json"
+chain = "config/spec.json"
 base_path = "parity_data1"
 
 [ui]
@@ -29,7 +29,7 @@ disable = true
 enable = false
 
 [account]
-password = ["pwd"]
+password = ["config/pwd"]
 
 [mining]
 force_sealing = true

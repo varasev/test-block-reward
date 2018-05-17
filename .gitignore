@@ -4,3 +4,4 @@ parity_data1/cache
 parity_data1/chains
 parity_data2/cache
 parity_data2/chains
+config/reserved_peers

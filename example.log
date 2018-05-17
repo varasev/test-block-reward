@@ -1,83 +1,83 @@
-2018-05-15T14:07:20.756Z [Block #17] contractCounter = 0
-2018-05-15T14:07:20.757Z [Block #17] LastBenefactorsLength = 0
-2018-05-15T14:07:20.757Z [Block #17] LastBenefactors0 = 0x0000000000000000000000000000000000000000
-2018-05-15T14:07:20.757Z [Block #17] LastKind0 = 0
-2018-05-15T14:07:20.757Z [Block #17] userBalances =
+2018-05-17T12:08:32.709Z [Block #14] contractCounter = 14
+2018-05-17T12:08:32.710Z [Block #14] LastBenefactorsLength = 1
+2018-05-17T12:08:32.710Z [Block #14] LastBenefactors0 = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
+2018-05-17T12:08:32.710Z [Block #14] LastKind0 = 0
+2018-05-17T12:08:32.711Z [Block #14] userBalances = 
 Validator1
-    mining: 8000000000000000000
-    payout: 0
+    mining: 0
+    payout: 110
 Validator2
-    mining: 9000000000000000000
-    payout: 0
+    mining: 0
+    payout: 30
 Vault
-    address: 0
+    address: 70
 
-2018-05-15T14:07:25.780Z [Block #18] contractCounter = 0
-2018-05-15T14:07:25.780Z [Block #18] LastBenefactorsLength = 0
-2018-05-15T14:07:25.780Z [Block #18] LastBenefactors0 = 0x0000000000000000000000000000000000000000
-2018-05-15T14:07:25.780Z [Block #18] LastKind0 = 0
-2018-05-15T14:07:25.781Z [Block #18] userBalances =
+2018-05-17T12:08:37.737Z [Block #15] contractCounter = 15
+2018-05-17T12:08:37.737Z [Block #15] LastBenefactorsLength = 1
+2018-05-17T12:08:37.738Z [Block #15] LastBenefactors0 = 0x1A22D96792666863f429A85623E6d4CA173D26ab
+2018-05-17T12:08:37.738Z [Block #15] LastKind0 = 0
+2018-05-17T12:08:37.738Z [Block #15] userBalances = 
 Validator1
-    mining: 8000000000000000000
-    payout: 0
+    mining: 0
+    payout: 110
 Validator2
-    mining: 10000000000000000000
-    payout: 0
+    mining: 0
+    payout: 40
 Vault
-    address: 0
+    address: 75
 
-2018-05-15T14:07:30.801Z [Block #19] contractCounter = 0
-2018-05-15T14:07:30.801Z [Block #19] LastBenefactorsLength = 0
-2018-05-15T14:07:30.801Z [Block #19] LastBenefactors0 = 0x0000000000000000000000000000000000000000
-2018-05-15T14:07:30.801Z [Block #19] LastKind0 = 0
-2018-05-15T14:07:30.801Z [Block #19] userBalances =
+2018-05-17T12:08:42.761Z [Block #16] contractCounter = 16
+2018-05-17T12:08:42.761Z [Block #16] LastBenefactorsLength = 1
+2018-05-17T12:08:42.761Z [Block #16] LastBenefactors0 = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
+2018-05-17T12:08:42.762Z [Block #16] LastKind0 = 0
+2018-05-17T12:08:42.762Z [Block #16] userBalances = 
 Validator1
-    mining: 9000000000000000000
-    payout: 0
+    mining: 0
+    payout: 120
 Validator2
-    mining: 10000000000000000000
-    payout: 0
+    mining: 0
+    payout: 40
 Vault
-    address: 0
+    address: 80
 
-2018-05-15T14:07:35.824Z [Block #20] contractCounter = 1
-2018-05-15T14:07:35.825Z [Block #20] LastBenefactorsLength = 1
-2018-05-15T14:07:35.825Z [Block #20] LastBenefactors0 = 0x1A22D96792666863f429A85623E6d4CA173D26ab
-2018-05-15T14:07:35.825Z [Block #20] LastKind0 = 0
-2018-05-15T14:07:35.825Z [Block #20] userBalances =
+2018-05-17T12:08:47.790Z [Block #17] contractCounter = 17
+2018-05-17T12:08:47.790Z [Block #17] LastBenefactorsLength = 1
+2018-05-17T12:08:47.791Z [Block #17] LastBenefactors0 = 0x1A22D96792666863f429A85623E6d4CA173D26ab
+2018-05-17T12:08:47.791Z [Block #17] LastKind0 = 0
+2018-05-17T12:08:47.791Z [Block #17] userBalances = 
 Validator1
-    mining: 9000000000000000000
-    payout: 0
+    mining: 0
+    payout: 120
 Validator2
-    mining: 10000000000000000000
-    payout: 10000000000000000000
+    mining: 0
+    payout: 50
 Vault
-    address: 5000000000000000000
+    address: 85
 
-2018-05-15T14:07:40.850Z [Block #21] contractCounter = 2
-2018-05-15T14:07:40.850Z [Block #21] LastBenefactorsLength = 1
-2018-05-15T14:07:40.850Z [Block #21] LastBenefactors0 = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
-2018-05-15T14:07:40.851Z [Block #21] LastKind0 = 0
-2018-05-15T14:07:40.851Z [Block #21] userBalances =
+2018-05-17T12:08:52.823Z [Block #18] contractCounter = 18
+2018-05-17T12:08:52.823Z [Block #18] LastBenefactorsLength = 1
+2018-05-17T12:08:52.824Z [Block #18] LastBenefactors0 = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
+2018-05-17T12:08:52.824Z [Block #18] LastKind0 = 0
+2018-05-17T12:08:52.824Z [Block #18] userBalances = 
 Validator1
-    mining: 9000000000000000000
-    payout: 10000000000000000000
+    mining: 0
+    payout: 130
 Validator2
-    mining: 10000000000000000000
-    payout: 10000000000000000000
+    mining: 0
+    payout: 50
 Vault
-    address: 10000000000000000000
+    address: 90
 
-2018-05-15T14:07:45.876Z [Block #22] contractCounter = 3
-2018-05-15T14:07:45.876Z [Block #22] LastBenefactorsLength = 1
-2018-05-15T14:07:45.876Z [Block #22] LastBenefactors0 = 0x1A22D96792666863f429A85623E6d4CA173D26ab
-2018-05-15T14:07:45.876Z [Block #22] LastKind0 = 0
-2018-05-15T14:07:45.876Z [Block #22] userBalances =
+2018-05-17T12:08:57.846Z [Block #19] contractCounter = 19
+2018-05-17T12:08:57.846Z [Block #19] LastBenefactorsLength = 1
+2018-05-17T12:08:57.847Z [Block #19] LastBenefactors0 = 0x1A22D96792666863f429A85623E6d4CA173D26ab
+2018-05-17T12:08:57.847Z [Block #19] LastKind0 = 0
+2018-05-17T12:08:57.847Z [Block #19] userBalances = 
 Validator1
-    mining: 9000000000000000000
-    payout: 10000000000000000000
+    mining: 0
+    payout: 130
 Validator2
-    mining: 10000000000000000000
-    payout: 20000000000000000000
+    mining: 0
+    payout: 60
 Vault
-    address: 15000000000000000000
+    address: 95
