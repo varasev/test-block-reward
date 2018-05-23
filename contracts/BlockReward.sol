@@ -12,27 +12,27 @@ contract BlockReward is IBlockReward, EternalStorage {
     bytes32 private constant PROXY_STORAGE = keccak256("proxyStorage");
     address private constant SYSTEM_ADDRESS = 0xffffFFFfFFffffffffffffffFfFFFfffFFFfFFfE;
     
-    uint256 public constant blockRewardAmount = 1 ether;
-    uint256 public constant emissionFundsAmount = 1 ether;
+    uint256 public constant BLOCK_REWARD_AMOUNT = 1 ether;
+    uint256 public constant EMISSION_FUNDS_AMOUNT = 1 ether;
 
     modifier onlySystem {
         require(msg.sender == SYSTEM_ADDRESS);
         _;
     }
 
-    function counter() public view returns(uint256) {
+    function counter() external view returns(uint256) {
         return uintStorage[COUNTER];
     }
 
-    function emissionFunds() public view returns(address) {
+    function emissionFunds() external view returns(address) {
         return IProxyStorage(proxyStorage()).getEmissionFunds();
     }
 
-    function lastMiningKey() public view returns(address) {
+    function lastMiningKey() external view returns(address) {
         return addressStorage[LAST_MINING_KEY];
     }
 
-    function proxyStorage() public view returns(address) {
+    function proxyStorage() external view returns(address) {
         return addressStorage[PROXY_STORAGE];
     }
 
@@ -52,7 +52,7 @@ contract BlockReward is IBlockReward, EternalStorage {
         address payoutKey = _getPayoutByMining(miningKey);
         uint256 receiversLength = 2;
 
-        if (emissionFunds() == address(0) || emissionFundsAmount == 0) {
+        if (emissionFunds() == address(0) || EMISSION_FUNDS_AMOUNT == 0) {
             receiversLength = 1;
         }
 
@@ -60,11 +60,11 @@ contract BlockReward is IBlockReward, EternalStorage {
         uint256[] memory rewards = new uint256[](receiversLength);
 
         receivers[0] = (payoutKey != address(0)) ? payoutKey : miningKey;
-        rewards[0] = blockRewardAmount;
+        rewards[0] = BLOCK_REWARD_AMOUNT;
 
         if (receiversLength == 2) {
             receivers[1] = emissionFunds();
-            rewards[1] = emissionFundsAmount;
+            rewards[1] = EMISSION_FUNDS_AMOUNT;
         }
 
         _incrementCounter();
