@@ -1,6 +1,6 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
 
-import "./ITestPayoutByMining.sol";
+import "./interfaces/ITestPayoutByMining.sol";
 
 contract TestPayoutByMining is ITestPayoutByMining {
     address public miningKey1;
@@ -8,7 +8,7 @@ contract TestPayoutByMining is ITestPayoutByMining {
     address public payoutKey1;
     address public payoutKey2;
 
-    function TestPayoutByMining(
+    constructor(
         address _miningKey1,
         address _payoutKey1,
         address _miningKey2,

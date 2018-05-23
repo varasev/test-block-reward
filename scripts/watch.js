@@ -30,7 +30,7 @@ var usersToWatch = [
 
 var web3 = new Web3('ws://localhost:8546');
 var BN = web3.utils.BN;
-var abi = JSON.parse( fs.readFileSync('./contracts/TestBlockReward.abi.json', 'utf8') );
+var abi = JSON.parse( fs.readFileSync('./contracts/abis/TestBlockReward.abi.json', 'utf8') );
 var rewardContract = new web3.eth.Contract(abi, REWARD_CONTRACT);
 var height = 0;
 

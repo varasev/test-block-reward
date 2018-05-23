@@ -24,7 +24,7 @@ async function showBytecode(contractName) {
 	const abi = JSON.parse(abiStr);
 	let bytecode = compiled.contracts[':' + contractName].bytecode;
 
-	fs.writeFileSync(`../contracts/${contractName}.abi.json`, abiStr);
+	fs.writeFileSync(`../contracts/abis/${contractName}.abi.json`, abiStr);
 
 	let arguments = [];
 

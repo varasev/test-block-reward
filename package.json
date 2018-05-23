@@ -15,7 +15,7 @@
   "dependencies": {
     "interval-promise": "^1.1.1",
     "json2yaml": "^1.1.0",
-    "solc": "^0.4.21",
+    "solc": "^0.4.23",
     "web3": "^1.0.0-beta.34"
   }
 }

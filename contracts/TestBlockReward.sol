@@ -1,7 +1,7 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
 
-import "./IBlockReward.sol";
-import "./ITestPayoutByMining.sol";
+import "./interfaces/IBlockReward.sol";
+import "./interfaces/ITestPayoutByMining.sol";
 
 contract TestBlockReward is IBlockReward {
     uint256 public counter = 0;
