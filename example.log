@@ -1,83 +1,71 @@
-2018-05-17T12:08:32.709Z [Block #14] contractCounter = 14
-2018-05-17T12:08:32.710Z [Block #14] LastBenefactorsLength = 1
-2018-05-17T12:08:32.710Z [Block #14] LastBenefactors0 = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
-2018-05-17T12:08:32.710Z [Block #14] LastKind0 = 0
-2018-05-17T12:08:32.711Z [Block #14] userBalances = 
+2018-05-23T13:33:48.869Z [Block #15] contractCounter = 15
+2018-05-23T13:33:48.870Z [Block #15] lastMiningKey = 0x1A22D96792666863f429A85623E6d4CA173D26ab
+2018-05-23T13:33:48.870Z [Block #15] balances = 
 Validator1
-    mining: 0
-    payout: 110
+	mining: 0
+	payout: 11
 Validator2
-    mining: 0
-    payout: 30
+	mining: 0
+	payout: 4
 Vault
-    address: 70
+	address: 15
 
-2018-05-17T12:08:37.737Z [Block #15] contractCounter = 15
-2018-05-17T12:08:37.737Z [Block #15] LastBenefactorsLength = 1
-2018-05-17T12:08:37.738Z [Block #15] LastBenefactors0 = 0x1A22D96792666863f429A85623E6d4CA173D26ab
-2018-05-17T12:08:37.738Z [Block #15] LastKind0 = 0
-2018-05-17T12:08:37.738Z [Block #15] userBalances = 
+2018-05-23T13:33:53.886Z [Block #16] contractCounter = 16
+2018-05-23T13:33:53.887Z [Block #16] lastMiningKey = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
+2018-05-23T13:33:53.887Z [Block #16] balances = 
 Validator1
-    mining: 0
-    payout: 110
+	mining: 0
+	payout: 12
 Validator2
-    mining: 0
-    payout: 40
+	mining: 0
+	payout: 4
 Vault
-    address: 75
+	address: 16
 
-2018-05-17T12:08:42.761Z [Block #16] contractCounter = 16
-2018-05-17T12:08:42.761Z [Block #16] LastBenefactorsLength = 1
-2018-05-17T12:08:42.761Z [Block #16] LastBenefactors0 = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
-2018-05-17T12:08:42.762Z [Block #16] LastKind0 = 0
-2018-05-17T12:08:42.762Z [Block #16] userBalances = 
+2018-05-23T13:33:58.911Z [Block #17] contractCounter = 17
+2018-05-23T13:33:58.911Z [Block #17] lastMiningKey = 0x1A22D96792666863f429A85623E6d4CA173D26ab
+2018-05-23T13:33:58.912Z [Block #17] balances = 
 Validator1
-    mining: 0
-    payout: 120
+	mining: 0
+	payout: 12
 Validator2
-    mining: 0
-    payout: 40
+	mining: 0
+	payout: 5
 Vault
-    address: 80
+	address: 17
 
-2018-05-17T12:08:47.790Z [Block #17] contractCounter = 17
-2018-05-17T12:08:47.790Z [Block #17] LastBenefactorsLength = 1
-2018-05-17T12:08:47.791Z [Block #17] LastBenefactors0 = 0x1A22D96792666863f429A85623E6d4CA173D26ab
-2018-05-17T12:08:47.791Z [Block #17] LastKind0 = 0
-2018-05-17T12:08:47.791Z [Block #17] userBalances = 
+2018-05-23T13:34:03.932Z [Block #18] contractCounter = 18
+2018-05-23T13:34:03.932Z [Block #18] lastMiningKey = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
+2018-05-23T13:34:03.933Z [Block #18] balances = 
 Validator1
-    mining: 0
-    payout: 120
+	mining: 0
+	payout: 13
 Validator2
-    mining: 0
-    payout: 50
+	mining: 0
+	payout: 5
 Vault
-    address: 85
+	address: 18
 
-2018-05-17T12:08:52.823Z [Block #18] contractCounter = 18
-2018-05-17T12:08:52.823Z [Block #18] LastBenefactorsLength = 1
-2018-05-17T12:08:52.824Z [Block #18] LastBenefactors0 = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
-2018-05-17T12:08:52.824Z [Block #18] LastKind0 = 0
-2018-05-17T12:08:52.824Z [Block #18] userBalances = 
+2018-05-23T13:34:08.953Z [Block #19] contractCounter = 19
+2018-05-23T13:34:08.953Z [Block #19] lastMiningKey = 0x1A22D96792666863f429A85623E6d4CA173D26ab
+2018-05-23T13:34:08.953Z [Block #19] balances = 
 Validator1
-    mining: 0
-    payout: 130
+	mining: 0
+	payout: 13
 Validator2
-    mining: 0
-    payout: 50
+	mining: 0
+	payout: 6
 Vault
-    address: 90
+	address: 19
 
-2018-05-17T12:08:57.846Z [Block #19] contractCounter = 19
-2018-05-17T12:08:57.846Z [Block #19] LastBenefactorsLength = 1
-2018-05-17T12:08:57.847Z [Block #19] LastBenefactors0 = 0x1A22D96792666863f429A85623E6d4CA173D26ab
-2018-05-17T12:08:57.847Z [Block #19] LastKind0 = 0
-2018-05-17T12:08:57.847Z [Block #19] userBalances = 
+2018-05-23T13:34:13.972Z [Block #20] contractCounter = 20
+2018-05-23T13:34:13.972Z [Block #20] lastMiningKey = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
+2018-05-23T13:34:13.972Z [Block #20] balances = 
 Validator1
-    mining: 0
-    payout: 130
+	mining: 0
+	payout: 14
 Validator2
-    mining: 0
-    payout: 60
+	mining: 0
+	payout: 6
 Vault
-    address: 95
+	address: 20

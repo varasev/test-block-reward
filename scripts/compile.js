@@ -6,13 +6,21 @@ const web3 = new Web3(new Web3.providers.HttpProvider("https://core.poa.network"
 main();
 
 async function main() {
-	await showBytecode('TestBlockReward');
+	await showImplementationBytecode('BlockReward');
 	console.log('');
-	await showBytecode('TestPayoutByMining');
+	await showStorageBytecode('BlockReward');
+	console.log('');
+	await showImplementationBytecode('KeysManager');
+	console.log('');
+	await showStorageBytecode('KeysManager');
+	console.log('');
+	await showImplementationBytecode('ProxyStorage');
+	console.log('');
+	await showStorageBytecode('ProxyStorage');
 }
 
-async function showBytecode(contractName) {
-	console.log(`${contractName} compilation...`);
+async function showImplementationBytecode(contractName) {
+	console.log(`${contractName} implementation compilation...`);
 	const compiled = solc.compile({
 		sources: {
 			'': fs.readFileSync(`../contracts/${contractName}.sol`).toString()
@@ -27,21 +35,42 @@ async function showBytecode(contractName) {
 	fs.writeFileSync(`../contracts/abis/${contractName}.abi.json`, abiStr);
 
 	let arguments = [];
-
-	if (contractName == 'TestPayoutByMining') {
-		arguments = [
-			'0x6546ed725e88fa728a908f9ee9d61f50edc40ad6',
-			'0x7546ed725e88fa728a908f9ee9d61f50edc40ad6',
-			'0x1a22d96792666863f429a85623e6d4ca173d26ab',
-			'0x2a22d96792666863f429a85623e6d4ca173d26ab'
-		];
-	}
-	
 	const contract = new web3.eth.Contract(abi);
 	const deploy = await contract.deploy({data: bytecode, arguments: arguments});
 	bytecode = await deploy.encodeABI();
 	
-	console.log(`${contractName} bytecode:`);
+	console.log(`${contractName} implementation bytecode:`);
+	console.log('');
+	console.log(bytecode);
+}
+
+async function showStorageBytecode(contractName) {
+	console.log(`${contractName} storage compilation...`);
+	const compiled = solc.compile({
+		sources: {
+			'': fs.readFileSync(`../contracts/eternal-storage/EternalStorageProxy.sol`).toString()
+		}
+	}, 1, function (path) {
+		return {contents: fs.readFileSync('../contracts/eternal-storage/' + path).toString()}
+	});
+	const abiStr = compiled.contracts[':EternalStorageProxy'].interface;
+	const abi = JSON.parse(abiStr);
+	let bytecode = compiled.contracts[':EternalStorageProxy'].bytecode;
+
+	let arguments = ['0xf845799e5577fcd47374b4375abff380dac74256'];
+	if (contractName == 'BlockReward') {
+		arguments.push('0xf845799e5577fcd47374b4375abff380dac74251');
+	} else if (contractName == 'KeysManager') {
+		arguments.push('0xf845799e5577fcd47374b4375abff380dac74253');
+	} else if (contractName == 'ProxyStorage') {
+		arguments[0] = '0x0000000000000000000000000000000000000000';
+		arguments.push('0xf845799e5577fcd47374b4375abff380dac74255');
+	}
+	const contract = new web3.eth.Contract(abi);
+	const deploy = await contract.deploy({data: bytecode, arguments: arguments});
+	bytecode = await deploy.encodeABI();
+	
+	console.log(`${contractName} storage bytecode:`);
 	console.log('');
 	console.log(bytecode);
 }

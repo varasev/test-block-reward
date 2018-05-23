@@ -13,7 +13,7 @@ $ npm i
 $ npm run start
 ```
 
-3. Watch a log in the console. It should be seen that `payoutKey` balances are being increased alternately by 10 eth and the vault's balance is being increased by 5 eth every 5 seconds. An example log is available here: https://github.com/varasev/test-block-reward/blob/2c8135a951fbaf34953e4ed05661b6e7e19833ab/example.log
+3. Watch a log in the console. It should be seen that `payoutKey` balances are being increased alternately by 1 eth and the vault's balance is being increased by 1 eth every 5 seconds. An example log is available here: https://github.com/varasev/test-block-reward/blob/2c8135a951fbaf34953e4ed05661b6e7e19833ab/example.log
 
 Payout key is read from another contract: https://github.com/varasev/test-block-reward/blob/2c8135a951fbaf34953e4ed05661b6e7e19833ab/contracts/TestBlockReward.sol#L52
 

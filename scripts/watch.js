@@ -1,11 +1,10 @@
 const fs = require('fs');
 const Web3 = require('web3');
 const interval = require('interval-promise');
-const json2yaml = require('json2yaml');
 
 const BLOCK_TIME = 5000;
-const REWARD_CONTRACT = '0xf845799e5577fcd47374b4375abff380dac74251';
-var usersToWatch = [
+const REWARD_CONTRACT = '0xf845799e5577fcd47374b4375abff380dac74252';
+var balancesToWatch = [
     {
         name: 'Validator1',
         keys: {
@@ -30,7 +29,7 @@ var usersToWatch = [
 
 var web3 = new Web3('ws://localhost:8546');
 var BN = web3.utils.BN;
-var abi = JSON.parse( fs.readFileSync('./contracts/abis/TestBlockReward.abi.json', 'utf8') );
+var abi = JSON.parse( fs.readFileSync('./contracts/abis/BlockReward.abi.json', 'utf8') );
 var rewardContract = new web3.eth.Contract(abi, REWARD_CONTRACT);
 var height = 0;
 
@@ -46,58 +45,45 @@ async function getHeight() {
 }
 
 async function getBalances() {
-    let userBalances = [];
-    for (let a = 0; a < usersToWatch.length; a += 1) {
-        let user = usersToWatch[a];
-        let userBalance = {
-            name: user.name,
+    let balances = [];
+    for (let a = 0; a < balancesToWatch.length; a++) {
+        let address = balancesToWatch[a];
+        let balance = {
+            name: address.name,
             keys: {},
         };
 
-        let userKeys = Object.keys(user.keys).sort();
+        let userKeys = Object.keys(address.keys).sort();
         for (let k = 0; k < userKeys.length; k += 1) {
             let key = userKeys[k];
-            let address = user.keys[key];
-            if (address) {
-                userBalance.keys[key] = await web3.eth.getBalance(address);
-                userBalance.keys[key] = web3.utils.fromWei(userBalance.keys[key], 'ether');
+            if (address.keys[key]) {
+                balance.keys[key] = await web3.eth.getBalance(address.keys[key]);
+                balance.keys[key] = web3.utils.fromWei(balance.keys[key], 'ether');
             }
         }
 
-        userBalances.push(userBalance);
+        balances.push(balance);
     }
-    return userBalances;
+    return balances;
 }
 
 async function getContractCounter() {
     return await rewardContract.methods.counter().call();
 }
 
-async function getContractLastBenefactorsLength() {
-    return await rewardContract.methods.last_benefactors_length().call();
-}
-
-async function getContractLastBenefactors0() {
-    return await rewardContract.methods.last_benefactors_0().call();
-}
-
-async function getContractLastKind0() {
-    return await rewardContract.methods.last_kind_0().call();
+async function getContractLastMiningKey() {
+    return await rewardContract.methods.lastMiningKey().call();
 }
 
 async function collect() {
     await getHeight();
-    var userBalances = await getBalances();
+    var balances = await getBalances();
     var contractCounter = await getContractCounter();
-    var LastBenefactorsLength = await getContractLastBenefactorsLength();
-    var LastBenefactors0 = await getContractLastBenefactors0();
-    var LastKind0 = await getContractLastKind0();
+    var lastMiningKey = await getContractLastMiningKey();
 
     log('contractCounter = ' + contractCounter);
-    log('LastBenefactorsLength = ' + LastBenefactorsLength);
-    log('LastBenefactors0 = ' + LastBenefactors0);
-    log('LastKind0 = ' + LastKind0);
-    log('userBalances = \n' + userBalances.map((user) => {
+    log('lastMiningKey = ' + lastMiningKey);
+    log('balances = \n' + balances.map((user) => {
         let str = '';
         let name = user.name;
         str += `${name}\n`;
@@ -111,15 +97,6 @@ async function collect() {
 }
 
 // ********** MAIN ********** //
-
-rewardContract.events.RewardReceived({ fromBlock: 0 }, (err, event) => {
-    if (err) {
-        log('RewardReceived event error: ' + err);
-        return;
-    }
-
-    log('RewardReceived event: ' + JSON.stringify(event, null, 4));
-});
 
 interval(async () => {
     await collect();
