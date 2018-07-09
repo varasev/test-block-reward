@@ -13,7 +13,7 @@ $ npm i
 $ npm run start
 ```
 
-3. Watch a log in the console. It should be seen that `payoutKey` balances are being increased alternately by 1 eth and the vault's balance is being increased by 1 eth every 5 seconds. We also can see that the gas fee is being accrued alternately to mining keys when a sender transfers some amount to a receiver. An example log is available here: https://github.com/varasev/test-block-reward/blob/7fab4f4d29502715547f99bb16dffe4b438b2ce9/example.log
+3. Watch a log in the console. It should be seen that `payoutKey` balances are being increased alternately by 1 eth and the vault's balance is being increased by 1 eth every 5 seconds. We also can see that the gas fee is being accrued alternately to mining keys when a sender transfers some amount to a receiver. An example log is available here: https://github.com/varasev/test-block-reward/blob/560370c1aab59ad84ee99df1f059bf2ff2af452c/example.log
 
 4. To stop and clear this setup, perform the next command:
 
