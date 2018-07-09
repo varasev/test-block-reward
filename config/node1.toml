@@ -29,6 +29,7 @@ disable = true
 enable = false
 
 [account]
+unlock = ["0x6546ed725e88fa728a908f9ee9d61f50edc40ad6","0x74e07782e722608448f1cdc3040c874f283340b0"]
 password = ["config/pwd"]
 
 [mining]
