@@ -2,7 +2,6 @@ const fs = require('fs');
 const Web3 = require('web3');
 const interval = require('interval-promise');
 
-const BLOCK_TIME = 5000;
 const REWARD_CONTRACT = '0xf845799e5577fcd47374b4375abff380dac74252';
 var balancesToWatch = [
     {
@@ -89,6 +88,7 @@ async function getContractLastMiningKey() {
 
 async function collect() {
     await getHeight();
+
     var balances = await getBalances();
     var contractCounter = await getContractCounter();
     var lastMiningKey = await getContractLastMiningKey();
@@ -116,6 +116,12 @@ async function collect() {
 
 // ********** MAIN ********** //
 
-interval(async () => {
-    await collect();
-}, BLOCK_TIME);
+web3.eth.subscribe('newBlockHeaders', function(error, result){
+    if (error) {
+        console.log(error);
+    }
+}).on("data", function(blockHeader){
+    if (blockHeader.number) {
+        collect();
+    }
+});
