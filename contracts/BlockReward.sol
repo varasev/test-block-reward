@@ -24,7 +24,7 @@ contract BlockReward is IBlockReward, EternalStorage {
         return uintStorage[COUNTER];
     }
 
-    function emissionFunds() external view returns(address) {
+    function emissionFunds() public view returns(address) {
         return IProxyStorage(proxyStorage()).getEmissionFunds();
     }
 
@@ -32,7 +32,7 @@ contract BlockReward is IBlockReward, EternalStorage {
         return addressStorage[LAST_MINING_KEY];
     }
 
-    function proxyStorage() external view returns(address) {
+    function proxyStorage() public view returns(address) {
         return addressStorage[PROXY_STORAGE];
     }
 
