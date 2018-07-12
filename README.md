@@ -23,7 +23,7 @@ $ npm run clear
 
 ### Compilation
 
-To see bytecodes of contracts and to save their ABI's do the next commands:
+To see bytecodes of contracts and to save their ABIs do the next commands:
 
 ```bash
 $ cd scripts
