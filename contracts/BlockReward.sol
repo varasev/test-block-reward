@@ -20,22 +20,6 @@ contract BlockReward is IBlockReward, EternalStorage {
         _;
     }
 
-    function counter() external view returns(uint256) {
-        return uintStorage[COUNTER];
-    }
-
-    function emissionFunds() public view returns(address) {
-        return IProxyStorage(proxyStorage()).getEmissionFunds();
-    }
-
-    function lastMiningKey() external view returns(address) {
-        return addressStorage[LAST_MINING_KEY];
-    }
-
-    function proxyStorage() public view returns(address) {
-        return addressStorage[PROXY_STORAGE];
-    }
-
     function reward(address[] benefactors, uint16[] kind)
         external
         onlySystem
@@ -71,6 +55,22 @@ contract BlockReward is IBlockReward, EternalStorage {
         _setLastMiningKey(miningKey);
     
         return (receivers, rewards);
+    }
+
+    function counter() public view returns(uint256) {
+        return uintStorage[COUNTER];
+    }
+
+    function emissionFunds() public view returns(address) {
+        return IProxyStorage(proxyStorage()).getEmissionFunds();
+    }
+
+    function lastMiningKey() public view returns(address) {
+        return addressStorage[LAST_MINING_KEY];
+    }
+
+    function proxyStorage() public view returns(address) {
+        return addressStorage[PROXY_STORAGE];
     }
 
     function _getPayoutByMining(address _miningKey)

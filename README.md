@@ -1,6 +1,6 @@
 ## BlockReward contract test in Parity 1.11
 
-Usage:
+### Usage
 
 1. Install Parity 1.11 and Node.js 8.11 LTS (with npm) if they are not installed.
 
@@ -19,4 +19,13 @@ $ npm run start
 
 ```bash
 $ npm run clear
+```
+
+### Compilation
+
+To see bytecodes of contracts and to save their ABI's do the next commands:
+
+```bash
+$ cd scripts
+$ node compile.js
 ```
