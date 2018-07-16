@@ -8,7 +8,9 @@
     "start-node-2": "parity --config ./config/node2.toml > /dev/null 2>&1 &",
     "stop": "bash ./scripts/stop-nodes",
     "watch": "node ./scripts/watch.js",
-    "clear": "npm run stop && bash ./scripts/clear.sh"
+    "clear": "npm run stop && bash ./scripts/clear.sh",
+    "restart": "npm run clear && npm run start",
+    "build": "node ./scripts/build.js"
   },
   "author": "",
   "license": "ISC",

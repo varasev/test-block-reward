@@ -1,4 +1,4 @@
-## BlockReward contract test in Parity 1.11
+## RewardByBlock contract test in Parity 1.11
 
 ### Usage
 
@@ -15,17 +15,22 @@ $ npm run start
 
 3. Watch a log in the console. It should be seen that `payoutKey` balances are being increased alternately by 1 eth and the vault's balance is being increased by 1 eth every 5 seconds. We also can see that the gas fee is being accrued alternately to mining keys when a sender transfers some amount to a receiver. An example log is available here: https://github.com/varasev/test-block-reward/blob/560370c1aab59ad84ee99df1f059bf2ff2af452c/example.log
 
-4. To stop and clear this setup, perform the next command:
+4. To restart this setup from scratch, perform the next command:
+
+```bash
+$ npm run restart
+```
+
+5. To completely stop and clear, perform the next command:
 
 ```bash
 $ npm run clear
 ```
 
-### Compilation
+### Compilation/ recompilation
 
-To see bytecodes of contracts and to save their ABIs do the next commands:
+Do the next command for contracts compilation, for saving their bytecodes to `config/spec.json` and for saving their ABIs to `contracts/abis`:
 
 ```bash
-$ cd scripts
-$ node compile.js
+$ npm run build
 ```
