@@ -21,7 +21,7 @@ $ npm start
 $ npm run accrue 1
 ```
 
-You'll see in the log that the balance of an extra receiver increased by 1 coin on the next block.
+You'll see in the log that the balance of an extra receiver increased by one coin on the next block.
 
 1. To restart this setup from scratch, perform the next command:
 
