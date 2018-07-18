@@ -14,6 +14,38 @@
     "type": "function"
   },
   {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_receiver",
+        "type": "address"
+      },
+      {
+        "name": "_amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "addExtraReceiver",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "blockRewardAmount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "constant": true,
     "inputs": [],
     "name": "version",
@@ -43,12 +75,17 @@
   },
   {
     "constant": true,
-    "inputs": [],
-    "name": "counter",
+    "inputs": [
+      {
+        "name": "_index",
+        "type": "uint256"
+      }
+    ],
+    "name": "extraReceivers",
     "outputs": [
       {
         "name": "",
-        "type": "uint256"
+        "type": "address"
       }
     ],
     "payable": false,
@@ -57,8 +94,13 @@
   },
   {
     "constant": true,
-    "inputs": [],
-    "name": "EMISSION_FUNDS_AMOUNT",
+    "inputs": [
+      {
+        "name": "_receiver",
+        "type": "address"
+      }
+    ],
+    "name": "extraReceiversAmounts",
     "outputs": [
       {
         "name": "",
@@ -86,7 +128,35 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "BLOCK_REWARD_AMOUNT",
+    "name": "bridgeContract",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "emissionFundsAmount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "extraReceiversLength",
     "outputs": [
       {
         "name": "",
@@ -125,17 +195,37 @@
     "type": "function"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "lastMiningKey",
-    "outputs": [
+    "anonymous": false,
+    "inputs": [
       {
-        "name": "",
+        "indexed": true,
+        "name": "receiver",
         "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "name": "AddedReceiver",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "receivers",
+        "type": "address[]"
+      },
+      {
+        "indexed": false,
+        "name": "rewards",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "Rewarded",
+    "type": "event"
   }
 ]

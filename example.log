@@ -1,193 +1,223 @@
-2018-07-09T11:23:47.421Z [Block #2] contractCounter = 2
-2018-07-09T11:23:47.421Z [Block #2] lastMiningKey = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
-2018-07-09T11:23:47.421Z [Block #2] balances = 
+2018-07-18T08:46:55.163Z [Block #59] balances = 
 Validator1
-	mining: 0
-	payout: 2
+	mining: 0.0007913213
+	payout: 33
 Validator2
-	mining: 0
-	payout: 0
+	mining: 0.0007972426
+	payout: 26
 Vault
-	address: 2
+	address: 59
 Some sender
-	address: 1
+	address: 0.9984113801
 Some receiver
-	address: 0
-
-2018-07-09T11:23:52.441Z [Block #3] contractCounter = 3
-2018-07-09T11:23:52.441Z [Block #3] lastMiningKey = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
-2018-07-09T11:23:52.441Z [Block #3] balances = 
-Validator1
-	mining: 0.00004851
-	payout: 3
-Validator2
-	mining: 0
-	payout: 0
-Vault
+	address: 0.000000056
+Some extra receiver
 	address: 3
-Some sender
-	address: 0.999951488
-Some receiver
-	address: 0.000000002
 
-2018-07-09T11:23:57.461Z [Block #4] contractCounter = 4
-2018-07-09T11:23:57.461Z [Block #4] lastMiningKey = 0x1A22D96792666863f429A85623E6d4CA173D26ab
-2018-07-09T11:23:57.461Z [Block #4] balances = 
+2018-07-18T08:47:00.257Z [Block #60] balances = 
 Validator1
-	mining: 0.00004851
-	payout: 3
+	mining: 0.0008144213
+	payout: 34
 Validator2
-	mining: 0.0000231
-	payout: 1
+	mining: 0.0007972426
+	payout: 26
 Vault
+	address: 60
+Some sender
+	address: 0.9983882791
+Some receiver
+	address: 0.000000057
+Some extra receiver
+	address: 3
+
+2018-07-18T08:47:05.292Z [Block #61] balances = 
+Validator1
+	mining: 0.0008144213
+	payout: 34
+Validator2
+	mining: 0.0008203426
+	payout: 27
+Vault
+	address: 61
+Some sender
+	address: 0.9983651781
+Some receiver
+	address: 0.000000058
+Some extra receiver
+	address: 3
+
+2018-07-18T08:47:10.249Z [Block #62] balances = 
+Validator1
+	mining: 0.0008375213
+	payout: 35
+Validator2
+	mining: 0.0008203426
+	payout: 27
+Vault
+	address: 62
+Some sender
+	address: 0.9983420771
+Some receiver
+	address: 0.000000059
+Some extra receiver
+	address: 3
+
+2018-07-18T08:47:15.110Z [Block #63] balances = 
+Validator1
+	mining: 0.0008375213
+	payout: 35
+Validator2
+	mining: 0.0009417639
+	payout: 28
+Vault
+	address: 63
+Some sender
+	address: 0.9982206548
+Some receiver
+	address: 0.00000006
+Some extra receiver
 	address: 4
-Some sender
-	address: 0.999928387
-Some receiver
-	address: 0.000000003
 
-2018-07-09T11:24:02.480Z [Block #5] contractCounter = 5
-2018-07-09T11:24:02.480Z [Block #5] lastMiningKey = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
-2018-07-09T11:24:02.480Z [Block #5] balances = 
+2018-07-18T08:47:20.218Z [Block #64] balances = 
 Validator1
-	mining: 0.00007161
-	payout: 4
+	mining: 0.0008606213
+	payout: 36
 Validator2
-	mining: 0.0000231
-	payout: 1
+	mining: 0.0009417639
+	payout: 28
 Vault
-	address: 5
+	address: 64
 Some sender
-	address: 0.999905286
+	address: 0.9981975538
 Some receiver
-	address: 0.000000004
+	address: 0.000000061
+Some extra receiver
+	address: 4
 
-2018-07-09T11:24:07.499Z [Block #6] contractCounter = 6
-2018-07-09T11:24:07.499Z [Block #6] lastMiningKey = 0x1A22D96792666863f429A85623E6d4CA173D26ab
-2018-07-09T11:24:07.499Z [Block #6] balances = 
+2018-07-18T08:47:25.138Z [Block #65] balances = 
 Validator1
-	mining: 0.00007161
-	payout: 4
+	mining: 0.0008606213
+	payout: 36
 Validator2
-	mining: 0.0000462
-	payout: 2
+	mining: 0.0009648639
+	payout: 29
 Vault
-	address: 6
+	address: 65
 Some sender
-	address: 0.999882185
+	address: 0.9981744528
 Some receiver
-	address: 0.000000005
+	address: 0.000000062
+Some extra receiver
+	address: 4
 
-2018-07-09T11:24:12.518Z [Block #7] contractCounter = 7
-2018-07-09T11:24:12.518Z [Block #7] lastMiningKey = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
-2018-07-09T11:24:12.518Z [Block #7] balances = 
+2018-07-18T08:47:30.219Z [Block #66] balances = 
 Validator1
-	mining: 0.00009471
-	payout: 5
+	mining: 0.0009820426
+	payout: 37
 Validator2
-	mining: 0.0000462
-	payout: 2
+	mining: 0.0009648639
+	payout: 29
 Vault
-	address: 7
+	address: 66
 Some sender
-	address: 0.999859084
+	address: 0.9980530305
 Some receiver
-	address: 0.000000006
+	address: 0.000000063
+Some extra receiver
+	address: 5.5
 
-2018-07-09T11:24:17.543Z [Block #8] contractCounter = 8
-2018-07-09T11:24:17.543Z [Block #8] lastMiningKey = 0x1A22D96792666863f429A85623E6d4CA173D26ab
-2018-07-09T11:24:17.543Z [Block #8] balances = 
+2018-07-18T08:47:35.242Z [Block #67] balances = 
 Validator1
-	mining: 0.00009471
-	payout: 5
+	mining: 0.0009820426
+	payout: 37
 Validator2
-	mining: 0.0000693
-	payout: 3
+	mining: 0.0009879639
+	payout: 30
 Vault
-	address: 8
+	address: 67
 Some sender
-	address: 0.999835983
+	address: 0.9980299295
 Some receiver
-	address: 0.000000007
+	address: 0.000000064
+Some extra receiver
+	address: 5.5
 
-2018-07-09T11:24:22.572Z [Block #9] contractCounter = 9
-2018-07-09T11:24:22.572Z [Block #9] lastMiningKey = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
-2018-07-09T11:24:22.573Z [Block #9] balances = 
+2018-07-18T08:47:40.076Z [Block #68] balances = 
 Validator1
-	mining: 0.00011781
-	payout: 6
+	mining: 0.0010051426
+	payout: 38
 Validator2
-	mining: 0.0000693
-	payout: 3
+	mining: 0.0009879639
+	payout: 30
 Vault
-	address: 9
+	address: 68
 Some sender
-	address: 0.999812882
+	address: 0.9980068285
 Some receiver
-	address: 0.000000008
+	address: 0.000000065
+Some extra receiver
+	address: 5.5
 
-2018-07-09T11:24:27.592Z [Block #10] contractCounter = 10
-2018-07-09T11:24:27.592Z [Block #10] lastMiningKey = 0x1A22D96792666863f429A85623E6d4CA173D26ab
-2018-07-09T11:24:27.592Z [Block #10] balances = 
+2018-07-18T08:47:45.164Z [Block #69] balances = 
 Validator1
-	mining: 0.00011781
-	payout: 6
+	mining: 0.0010051426
+	payout: 38
 Validator2
-	mining: 0.0000924
-	payout: 4
+	mining: 0.0010110639
+	payout: 31
 Vault
-	address: 10
+	address: 69
 Some sender
-	address: 0.999789781
+	address: 0.9979837275
 Some receiver
-	address: 0.000000009
+	address: 0.000000066
+Some extra receiver
+	address: 5.5
 
-2018-07-09T11:24:32.617Z [Block #11] contractCounter = 11
-2018-07-09T11:24:32.617Z [Block #11] lastMiningKey = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
-2018-07-09T11:24:32.617Z [Block #11] balances = 
+2018-07-18T08:47:50.179Z [Block #70] balances = 
 Validator1
-	mining: 0.00014091
-	payout: 7
+	mining: 0.0010282426
+	payout: 39
 Validator2
-	mining: 0.0000924
-	payout: 4
+	mining: 0.0010110639
+	payout: 31
 Vault
-	address: 11
+	address: 70
 Some sender
-	address: 0.99976668
+	address: 0.9979606265
 Some receiver
-	address: 0.00000001
+	address: 0.000000067
+Some extra receiver
+	address: 5.5
 
-2018-07-09T11:24:37.635Z [Block #12] contractCounter = 12
-2018-07-09T11:24:37.636Z [Block #12] lastMiningKey = 0x1A22D96792666863f429A85623E6d4CA173D26ab
-2018-07-09T11:24:37.636Z [Block #12] balances = 
+2018-07-18T08:47:55.244Z [Block #71] balances = 
 Validator1
-	mining: 0.00014091
-	payout: 7
+	mining: 0.0010282426
+	payout: 39
 Validator2
-	mining: 0.0001155
-	payout: 5
+	mining: 0.0010341639
+	payout: 32
 Vault
-	address: 12
+	address: 71
 Some sender
-	address: 0.999743579
+	address: 0.9979375255
 Some receiver
-	address: 0.000000011
+	address: 0.000000068
+Some extra receiver
+	address: 5.5
 
-2018-07-09T11:24:42.657Z [Block #13] contractCounter = 13
-2018-07-09T11:24:42.657Z [Block #13] lastMiningKey = 0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6
-2018-07-09T11:24:42.657Z [Block #13] balances = 
+2018-07-18T08:48:00.226Z [Block #72] balances = 
 Validator1
-	mining: 0.00016401
-	payout: 8
+	mining: 0.0010513426
+	payout: 40
 Validator2
-	mining: 0.0001155
-	payout: 5
+	mining: 0.0010341639
+	payout: 32
 Vault
-	address: 13
+	address: 72
 Some sender
-	address: 0.999720478
+	address: 0.9979144245
 Some receiver
-	address: 0.000000012
-
-
+	address: 0.000000069
+Some extra receiver
+	address: 5.5

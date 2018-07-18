@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.24;
 
 import "./interfaces/IKeysManager.sol";
 import "./eternal-storage/EternalStorage.sol";

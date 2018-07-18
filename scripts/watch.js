@@ -36,11 +36,17 @@ var balancesToWatch = [
             address: '0x190ec582090ae24284989af812f6b2c93f768ecd',
         }
     },
+    {
+        name: 'Some extra receiver',
+        keys: {
+            address: '0x63a9344ae66c1f26d400b3ea4750a709c3aa6cfa',
+        }
+    },
 ];
 
 var web3 = new Web3('ws://localhost:8546');
 var BN = web3.utils.BN;
-var abi = JSON.parse( fs.readFileSync('./contracts/abis/BlockReward.abi.json', 'utf8') );
+var abi = require('../contracts/abis/RewardByBlock.abi.json');
 var rewardContract = new web3.eth.Contract(abi, REWARD_CONTRACT);
 var height = 0;
 
@@ -78,23 +84,23 @@ async function getBalances() {
     return balances;
 }
 
-async function getContractCounter() {
-    return await rewardContract.methods.counter().call();
-}
+//async function getContractCounter() {
+//    return await rewardContract.methods.counter().call();
+//}
 
-async function getContractLastMiningKey() {
-    return await rewardContract.methods.lastMiningKey().call();
-}
+//async function getContractLastMiningKey() {
+//    return await rewardContract.methods.lastMiningKey().call();
+//}
 
 async function collect() {
     await getHeight();
 
     var balances = await getBalances();
-    var contractCounter = await getContractCounter();
-    var lastMiningKey = await getContractLastMiningKey();
+    //var contractCounter = await getContractCounter();
+    //var lastMiningKey = await getContractLastMiningKey();
 
-    log('contractCounter = ' + contractCounter);
-    log('lastMiningKey = ' + lastMiningKey);
+    //log('contractCounter = ' + contractCounter);
+    //log('lastMiningKey = ' + lastMiningKey);
     log('balances = \n' + balances.map((user) => {
         let str = '';
         let name = user.name;

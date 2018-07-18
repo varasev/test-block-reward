@@ -14,7 +14,7 @@ main();
 
 async function main() {
 	let contracts = [
-		'BlockReward',
+		'RewardByBlock',
 		'KeysManager',
 		'ProxyStorage',
 	];
@@ -116,7 +116,7 @@ async function compileContract(contractName) {
 
 function getContractAddress(contractName, isImplementation) {
 	switch (contractName) {
-	case 'BlockReward':
+	case 'RewardByBlock':
 		return isImplementation ? '0xf845799e5577fcd47374b4375abff380dac74251' : '0xf845799e5577fcd47374b4375abff380dac74252';
 	case 'KeysManager':
 		return isImplementation ? '0xf845799e5577fcd47374b4375abff380dac74253' : '0xf845799e5577fcd47374b4375abff380dac74254';
