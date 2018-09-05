@@ -10,7 +10,7 @@ const amount = web3.utils.toWei(process.argv[2], 'ether')
 
 async function main() {
 	const rewardByBlockInstance = new web3.eth.Contract(rewardByBlockABI, rewardByBlockAddress)
-	const addExtraReceiver = rewardByBlockInstance.methods.addExtraReceiver(extraReceiver, amount)
+	const addExtraReceiver = rewardByBlockInstance.methods.addExtraReceiver(amount, extraReceiver)
 	const gas = await addExtraReceiver.estimateGas({from: unlockedAddress})
 	const data = await addExtraReceiver.encodeABI()
 

@@ -51,20 +51,27 @@ contract EternalStorageProxy is EternalStorage {
     * This function will return whatever the implementation call returns
     */
     // solhint-disable no-complex-fallback, no-inline-assembly
-    function() public payable {
+    function() external {
         address _impl = _implementation;
         require(_impl != address(0));
 
         assembly {
-            let ptr := mload(0x40)
-            calldatacopy(ptr, 0, calldatasize)
-            let result := delegatecall(gas, _impl, ptr, calldatasize, 0, 0)
-            let size := returndatasize
-            returndatacopy(ptr, 0, size)
+            // Copy msg.data. We take full control of memory in this inline assembly
+            // block because it will not return to Solidity code. We overwrite the
+            // Solidity scratch pad at memory position 0
+            calldatacopy(0, 0, calldatasize)
+
+            // Call the implementation.
+            // out and outsize are 0 because we don't know the size yet
+            let result := delegatecall(gas, _impl, 0, calldatasize, 0, 0)
+
+            // Copy the returned data
+            returndatacopy(0, 0, returndatasize)
 
             switch result
-            case 0 { revert(ptr, size) }
-            default { return(ptr, size) }
+            // delegatecall returns 0 on error
+            case 0 { revert(0, returndatasize) }
+            default { return(0, returndatasize) }
         }
     }
     // solhint-enable no-complex-fallback, no-inline-assembly
@@ -75,6 +82,14 @@ contract EternalStorageProxy is EternalStorage {
 
     function getProxyStorage() public view returns(address) {
         return addressStorage[PROXY_STORAGE];
+    }
+
+    /**
+    * @dev Tells the address of the current implementation
+    * @return address of the current implementation
+    */
+    function implementation() public view returns(address) {
+        return _implementation;
     }
 
     /**
@@ -97,18 +112,28 @@ contract EternalStorageProxy is EternalStorage {
 
     /**
      * @dev Allows ProxyStorage contract to upgrade the current implementation.
-     * @param implementation representing the address of the new implementation to be set.
+     * @param newImplementation representing the address of the new implementation to be set.
      */
-    function upgradeTo(address implementation) public onlyProxyStorage {
-        require(_implementation != implementation);
-        require(implementation != address(0));
+    function upgradeTo(address newImplementation) public onlyProxyStorage returns(bool) {
+        if (newImplementation == address(0)) return false;
+        if (_implementation == newImplementation) return false;
 
-        uint256 _newVersion = _version + 1;
-        assert(_newVersion > _version);
-        _version = _newVersion;
+        uint256 newVersion = _version + 1;
+        if (newVersion <= _version) return false;
 
-        _implementation = implementation;
-        emit Upgraded(_version, _implementation);
+        _version = newVersion;
+        _implementation = newImplementation;
+
+        emit Upgraded(newVersion, newImplementation);
+        return true;
+    }
+
+    /**
+    * @dev Tells the version number of the current implementation
+    * @return uint representing the number of the current version
+    */
+    function version() public view returns(uint256) {
+        return _version;
     }
 
     function _setProxyStorage(address _proxyStorage) private {

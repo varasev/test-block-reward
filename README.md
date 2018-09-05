@@ -44,3 +44,5 @@ $ npm run build
 ```
 
 Note that you have to perform `npm restart` after `npm run build` if you started it before.
+
+Tested with Parity 1.11.10-stable.
