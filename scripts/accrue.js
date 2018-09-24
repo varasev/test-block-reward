@@ -20,7 +20,9 @@ async function main() {
 		value: 0,
 		gas,
 		data
-	})
+	}).on('transactionHash', function (hash) {
+		process.exit(0);
+	});
 }
 
 main()
