@@ -45,4 +45,4 @@ $ npm run build
 
 Note that you have to perform `npm restart` after `npm run build` if you started it before.
 
-Tested with Parity 1.11.11-stable and Parity 2.0.6-unstable.
+Tested with Parity 1.11.11-stable and Parity 2.0.6-stable.
