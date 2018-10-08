@@ -1,8 +1,8 @@
-## RewardByBlock contract test in Parity 1.11
+## RewardByBlock contract test in Parity 1.11 and 2.0
 
 ### Usage
 
-1. Install Parity 1.11 and Node.js 8.11 LTS (with npm) if they are not installed.
+1. Install Parity 1.11 or 2.0 and Node.js 8.11 LTS (with npm) if they are not installed.
 
 2. Perform the next commands:
 
@@ -45,4 +45,4 @@ $ npm run build
 
 Note that you have to perform `npm restart` after `npm run build` if you started it before.
 
-Tested with Parity 1.11.11-stable.
+Tested with Parity 1.11.11-stable and Parity 2.0.6-unstable.
