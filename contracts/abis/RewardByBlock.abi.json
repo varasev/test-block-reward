@@ -1,6 +1,39 @@
 [
   {
     "constant": true,
+    "inputs": [
+      {
+        "name": "_receiver",
+        "type": "address"
+      }
+    ],
+    "name": "extraReceiverAmount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "bridgesAllowedLength",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
     "inputs": [],
     "name": "emissionFunds",
     "outputs": [
@@ -31,15 +64,19 @@
     "constant": true,
     "inputs": [
       {
-        "name": "_index",
+        "name": "_account",
+        "type": "address"
+      },
+      {
+        "name": "_blockNumber",
         "type": "uint256"
       }
     ],
-    "name": "extraReceivers",
+    "name": "mintedForAccountInBlock",
     "outputs": [
       {
         "name": "",
-        "type": "address"
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -50,11 +87,11 @@
     "constant": true,
     "inputs": [
       {
-        "name": "_receiver",
+        "name": "_account",
         "type": "address"
       }
     ],
-    "name": "extraReceiversAmounts",
+    "name": "mintedForAccount",
     "outputs": [
       {
         "name": "",
@@ -63,6 +100,53 @@
     ],
     "payable": false,
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_blockNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "mintedInBlock",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "mintedTotally",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "bridgesAllowed",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address[1]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -99,12 +183,55 @@
   },
   {
     "constant": true,
-    "inputs": [],
-    "name": "bridgeContract",
+    "inputs": [
+      {
+        "name": "_bridge",
+        "type": "address"
+      }
+    ],
+    "name": "mintedTotallyByBridge",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_index",
+        "type": "uint256"
+      }
+    ],
+    "name": "extraReceiverByIndex",
     "outputs": [
       {
         "name": "",
         "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_bridge",
+        "type": "address"
+      }
+    ],
+    "name": "bridgeAmount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -177,6 +304,11 @@
       {
         "indexed": true,
         "name": "receiver",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "bridge",
         "type": "address"
       }
     ],
