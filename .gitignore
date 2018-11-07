@@ -2,6 +2,12 @@ node_modules
 parity
 parity_data1/cache
 parity_data1/chains
+parity_data1/log
 parity_data2/cache
 parity_data2/chains
+parity_data2/log
+parity_data3/cache
+parity_data3/chains
+parity_data3/log
 config/reserved_peers
+.DS_Store

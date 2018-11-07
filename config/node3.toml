@@ -1,0 +1,39 @@
+[parity]
+chain = "config/spec.json"
+base_path = "parity_data3"
+
+[ui]
+disable = true
+
+[network]
+port = 40304
+discovery = true
+reserved_peers="config/reserved_peers"
+
+[rpc]
+disable = true
+
+[websockets]
+disable = true
+
+[ipc]
+disable = true
+
+[dapps]
+disable = true
+
+[secretstore]
+disable = true
+
+[ipfs]
+enable = false
+
+[account]
+unlock = ["0x4579c2a15651609ec44a5fadeaabfc30943b5949"]
+password = ["config/pwd"]
+
+[mining]
+force_sealing = true
+min_gas_price = 1000000000
+engine_signer = "0x4579c2a15651609ec44a5fadeaabfc30943b5949"
+reseal_on_txs = "none"

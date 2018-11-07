@@ -12,6 +12,9 @@ contract KeysManager is IKeysManager, EternalStorage {
         if (_miningKey == 0x1A22D96792666863f429A85623E6d4CA173D26ab) {
             return 0x2a22d96792666863f429a85623E6D4cA173D26ab;
         }
+        if (_miningKey == 0x4579C2a15651609ec44A5FAdeAabFc30943b5949) {
+            return 0x5579C2a15651609Ec44a5FADeAAbfC30943B5949;
+        }
         return 0;
     }
 
@@ -20,6 +23,9 @@ contract KeysManager is IKeysManager, EternalStorage {
             return true;
         }
         if (_key == 0x1A22D96792666863f429A85623E6d4CA173D26ab) {
+            return true;
+        }
+        if (_key == 0x4579C2a15651609ec44A5FAdeAabFc30943b5949) {
             return true;
         }
         return false;

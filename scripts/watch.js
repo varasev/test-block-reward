@@ -19,6 +19,13 @@ var balancesToWatch = [
         },
     },
     {
+        name: 'Validator3',
+        keys: {
+            mining: '0x4579c2a15651609ec44a5fadeaabfc30943b5949',
+            payout: '0x5579c2a15651609ec44a5fadeaabfc30943b5949',
+        },
+    },
+    {
         name: 'Vault',
         keys: {
             address: '0xE9d0bb7Fa991960cf9bcFf4899E8fec3B25E77f2',
@@ -48,6 +55,185 @@ var web3 = new Web3('ws://localhost:8546');
 var BN = web3.utils.BN;
 var abi = require('../contracts/abis/RewardByBlock.abi.json');
 var rewardContract = new web3.eth.Contract(abi, REWARD_CONTRACT);
+var validatorsContract = new web3.eth.Contract([
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "benignBlocks",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "benignAddresses",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "finalizeChange",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "currentValidators",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "benignSenders",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getValidators",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address[]"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "validator",
+                "type": "address"
+            },
+            {
+                "name": "blockNumber",
+                "type": "uint256"
+            },
+            {
+                "name": "proof",
+                "type": "bytes"
+            }
+        ],
+        "name": "reportMalicious",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "systemAddress",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "validator",
+                "type": "address"
+            },
+            {
+                "name": "blockNumber",
+                "type": "uint256"
+            }
+        ],
+        "name": "reportBenign",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "name": "parentHash",
+                "type": "bytes32"
+            },
+            {
+                "indexed": false,
+                "name": "newSet",
+                "type": "address[]"
+            }
+        ],
+        "name": "InitiateChange",
+        "type": "event"
+    }
+], '0x53a9344ae66c1f26d400b3ea4750a709c3aa6cfa');
+
 var height = 0;
 
 function log(...args) {
@@ -113,11 +299,27 @@ async function collect() {
         return str;
     }).join(''));
 
-    web3.eth.sendTransaction({
-        from: '0x74e07782e722608448f1cdc3040c874f283340b0',
-        to: '0x190ec582090ae24284989af812f6b2c93f768ecd',
-        value: 1000000000
-    });
+    let i = 0;
+    while (true) {
+        try {
+            let result = await validatorsContract.methods.benignAddresses(i).call();
+            console.log(`benignAddresses[${i}]: ${result}`);
+            result = await validatorsContract.methods.benignBlocks(i).call();
+            console.log(`benignBlocks[${i}]: ${result}`);
+            result = await validatorsContract.methods.benignSenders(i).call();
+            console.log(`benignSenders[${i}]: ${result}`);
+            console.log('');
+        } catch (e) {
+            break;
+        }
+        i++;
+    }
+
+    //web3.eth.sendTransaction({
+    //    from: '0x74e07782e722608448f1cdc3040c874f283340b0',
+    //    to: '0x190ec582090ae24284989af812f6b2c93f768ecd',
+    //    value: 1000000000
+    //});
 }
 
 // ********** MAIN ********** //
