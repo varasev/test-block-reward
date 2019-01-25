@@ -3,6 +3,7 @@ const Web3 = require('web3');
 const interval = require('interval-promise');
 
 const REWARD_CONTRACT = '0xf845799e5577fcd47374b4375abff380dac74252';
+const VALIDATOR_SET_CONTRACT = '0x8bf38d4764929064f2d4d3a56520a76ab3df415b';
 var balancesToWatch = [
     {
         name: 'Validator1',
@@ -48,6 +49,89 @@ var web3 = new Web3('ws://localhost:8546');
 var BN = web3.utils.BN;
 var abi = require('../contracts/abis/RewardByBlock.abi.json');
 var rewardContract = new web3.eth.Contract(abi, REWARD_CONTRACT);
+var validatorSetContract = new web3.eth.Contract([
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "reinitialize2",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "finalizeChangeBlocks",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256[]"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "reinitialize",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "finalizeChange",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "initialize",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getValidators",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address[]"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "name": "parentHash",
+                "type": "bytes32"
+            },
+            {
+                "indexed": false,
+                "name": "newSet",
+                "type": "address[]"
+            }
+        ],
+        "name": "InitiateChange",
+        "type": "event"
+    }
+], VALIDATOR_SET_CONTRACT);
 var height = 0;
 
 function log(...args) {
@@ -88,19 +172,20 @@ async function getBalances() {
 //    return await rewardContract.methods.counter().call();
 //}
 
-//async function getContractLastMiningKey() {
-//    return await rewardContract.methods.lastMiningKey().call();
-//}
+async function getFinalizeChangeBlocks() {
+    return await validatorSetContract.methods.finalizeChangeBlocks().call();
+}
 
 async function collect() {
     await getHeight();
 
     var balances = await getBalances();
     //var contractCounter = await getContractCounter();
-    //var lastMiningKey = await getContractLastMiningKey();
+    var finalizeChangeBlocks = await getFinalizeChangeBlocks();
 
     //log('contractCounter = ' + contractCounter);
     //log('lastMiningKey = ' + lastMiningKey);
+    console.log(finalizeChangeBlocks);
     log('balances = \n' + balances.map((user) => {
         let str = '';
         let name = user.name;
@@ -113,11 +198,29 @@ async function collect() {
         return str;
     }).join(''));
 
+    /*
     web3.eth.sendTransaction({
         from: '0x74e07782e722608448f1cdc3040c874f283340b0',
         to: '0x190ec582090ae24284989af812f6b2c93f768ecd',
         value: 1000000000
     });
+    */
+
+    if (height == 10) {
+        validatorSetContract.methods.reinitialize().send({
+            from: '0x74e07782e722608448f1cdc3040c874f283340b0'
+        }).on('receipt', function(receipt){
+            console.log(receipt);
+        });
+    }
+
+    if (height == 14) {
+        validatorSetContract.methods.reinitialize2().send({
+            from: '0x74e07782e722608448f1cdc3040c874f283340b0'
+        }).on('receipt', function(receipt){
+            console.log(receipt);
+        });
+    }
 }
 
 // ********** MAIN ********** //

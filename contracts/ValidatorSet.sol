@@ -28,7 +28,11 @@ contract EternalStorage {
 }
 
 contract ValidatorSet is EternalStorage {
-    function finalizeChange() public onlySystem {
+    event InitiateChange(bytes32 indexed parentHash, address[] newSet);
+
+    function finalizeChange() public {
+        uintArrayStorage[FINALIZE_CHANGE_BLOCKS].push(block.number);
+        addressArrayStorage[CURRENT_VALIDATORS] = addressArrayStorage[PENDING_VALIDATORS];
     }
 
     function getValidators() public view returns(address[]) {
@@ -40,5 +44,25 @@ contract ValidatorSet is EternalStorage {
         addressArrayStorage[CURRENT_VALIDATORS].push(0x1a22d96792666863f429a85623e6d4ca173d26ab);
     }
 
+    function reinitialize() public {
+        delete addressArrayStorage[PENDING_VALIDATORS];
+        addressArrayStorage[PENDING_VALIDATORS].push(0x1a22d96792666863f429a85623e6d4ca173d26ab);
+        //addressArrayStorage[PENDING_VALIDATORS].push(0x6546ed725e88fa728a908f9ee9d61f50edc40ad6);
+        emit InitiateChange(blockhash(block.number - 1), addressArrayStorage[PENDING_VALIDATORS]);
+    }
+
+    function reinitialize2() public {
+        delete addressArrayStorage[PENDING_VALIDATORS];
+        addressArrayStorage[PENDING_VALIDATORS].push(0x6546ed725e88fa728a908f9ee9d61f50edc40ad6);
+        addressArrayStorage[PENDING_VALIDATORS].push(0x1a22d96792666863f429a85623e6d4ca173d26ab);
+        emit InitiateChange(blockhash(block.number - 1), addressArrayStorage[PENDING_VALIDATORS]);
+    }
+
+    function finalizeChangeBlocks() public view returns(uint256[]) {
+        return uintArrayStorage[FINALIZE_CHANGE_BLOCKS];
+    }
+
     bytes32 internal constant CURRENT_VALIDATORS = keccak256("currentValidators");
+    bytes32 internal constant PENDING_VALIDATORS = keccak256("pendingValidators");
+    bytes32 internal constant FINALIZE_CHANGE_BLOCKS = keccak256("finalizeChangeBlocks");
 }
