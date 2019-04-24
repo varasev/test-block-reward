@@ -61,6 +61,10 @@ async function getCurrentValidators() {
     return await poaContract.methods.getCurrentValidators().call();
 }
 
+async function getPendingValidators() {
+    return await poaContract.methods.getPendingValidators().call();
+}
+
 async function collect() {
     await getHeight();
 
@@ -68,10 +72,18 @@ async function collect() {
     if (currentValidators.length == 0) {
         currentValidators = '[]';
     }
-    log(`currentValidators = ${currentValidators}`);
+    const pendingList = await getPendingValidators();
+
+    log(`\ncurrentValidators = ${currentValidators}\npendingList = ${pendingList}`);
 
     await printBalances();
     console.log('');
+
+    if (height == 3) {
+        poaContract.methods.addValidator('0xbbcaA8d48289bB1ffcf9808D9AA4b1d215054C78').send({
+            from: '0x74e07782e722608448f1cdc3040c874f283340b0'
+        });
+    }
 }
 
 // ********** MAIN ********** //

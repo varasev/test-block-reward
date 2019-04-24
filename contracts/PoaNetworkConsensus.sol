@@ -19,12 +19,21 @@ contract PoaNetworkConsensus {
         _moc = address(0xEecdD8d48289bb1bBcf9bB8d9aA4B1D215054cEe);
         currentValidators.push(_moc);
         pendingList = currentValidators;
-        pendingList.push(address(0xbbcaA8d48289bB1ffcf9808D9AA4b1d215054C78));
+    }
+
+    function addValidator(address _newValidator) public {
+        pendingList.push(_newValidator);
+        emit InitiateChange(blockhash(block.number - 1), pendingList);
     }
 
     // Used by the watch.js script
     function getCurrentValidators() public view returns(address[]) {
         return currentValidators;
+    }
+
+    // Used by the watch.js script
+    function getPendingValidators() public view returns(address[]) {
+        return pendingList;
     }
 
     // Used by the nodes when first initialized
