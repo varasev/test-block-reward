@@ -79,5 +79,22 @@
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "parentHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "newSet",
+        "type": "address[]"
+      }
+    ],
+    "name": "InitiateChange",
+    "type": "event"
   }
 ]
