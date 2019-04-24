@@ -14,9 +14,7 @@ main();
 
 async function main() {
 	let contracts = [
-		'RewardByBlock',
-		'KeysManager',
-		'ProxyStorage',
+		'PoaNetworkConsensus'
 	];
 
 	let allSuccess = true;
@@ -51,7 +49,7 @@ async function clearABIs() {
 async function compileContract(contractName) {
 	let contractFilename = `${contractName}.sol`;
 
-	console.log(`${contractName} implementation compilation...`);
+	console.log(`${contractName} compilation...`);
 	let compiled = solc.compile({
 		sources: {
 			'': fs.readFileSync(`${contractsPath}${contractFilename}`).toString()
@@ -74,54 +72,15 @@ async function compileContract(contractName) {
 
 	let contract = new web3.eth.Contract(abi);
 	let deploy = await contract.deploy({data: bytecode, arguments: []});
-	specJson.accounts[getContractAddress(contractName, true)].constructor = await deploy.encodeABI();
-
-	contractFilename = 'EternalStorageProxy.sol';
-
-	console.log(`${contractName} storage compilation...`);
-	compiled = solc.compile({
-		sources: {
-			'': fs.readFileSync(`${contractsPath}eternal-storage/${contractFilename}`).toString()
-		}
-	}, 1, function (path) {
-		return {contents: fs.readFileSync(`${contractsPath}eternal-storage/${path}`).toString()}
-	});
-
-	if (compiled.errors) {
-		for (let n in compiled.errors) {
-			console.log(`${contractFilename}${compiled.errors[n]}`);
-		}
-		return false;
-	}
-
-	const abiStr = compiled.contracts[':EternalStorageProxy'].interface;
-	abi = JSON.parse(abiStr);
-	bytecode = compiled.contracts[':EternalStorageProxy'].bytecode;
-
-	let arguments = [
-		getContractAddress('ProxyStorage', false),
-		getContractAddress(contractName, true)
-	];
-
-	if (contractName == 'ProxyStorage') {
-		arguments[0] = '0x0000000000000000000000000000000000000000';
-	}
-
-	contract = new web3.eth.Contract(abi);
-	deploy = await contract.deploy({data: bytecode, arguments: arguments});
-	specJson.accounts[getContractAddress(contractName, false)].constructor = await deploy.encodeABI();
+	specJson.accounts[getContractAddress(contractName)].constructor = await deploy.encodeABI();
 
 	return true;
 }
 
-function getContractAddress(contractName, isImplementation) {
+function getContractAddress(contractName) {
 	switch (contractName) {
-	case 'RewardByBlock':
-		return isImplementation ? '0xf845799e5577fcd47374b4375abff380dac74251' : '0xf845799e5577fcd47374b4375abff380dac74252';
-	case 'KeysManager':
-		return isImplementation ? '0xf845799e5577fcd47374b4375abff380dac74253' : '0xf845799e5577fcd47374b4375abff380dac74254';
-	case 'ProxyStorage':
-		return isImplementation ? '0xf845799e5577fcd47374b4375abff380dac74255' : '0xf845799e5577fcd47374b4375abff380dac74256';
+	case 'PoaNetworkConsensus':
+		return '0xbbcaa8d48289bb1ffcf9808d9aa4b1d215054c80';
 	default:
 		return '';
 	}

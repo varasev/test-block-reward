@@ -6,5 +6,11 @@ parity_data1/log
 parity_data2/cache
 parity_data2/chains
 parity_data2/log
+parity_data3/cache
+parity_data3/chains
+parity_data3/log
+parity_data4/cache
+parity_data4/chains
+parity_data4/log
 config/reserved_peers
 .DS_Store

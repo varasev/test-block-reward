@@ -13,3 +13,5 @@ function kill_process {
 
 kill_process 8545
 kill_process 9545
+kill_process 9546
+kill_process 9547

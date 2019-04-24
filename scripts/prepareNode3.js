@@ -23,7 +23,7 @@ async function main() {
 function getEnodeURL() {
 	return new Promise((resolve, reject) => {
 		var exec = require('child_process').exec;
-		const cmd = `curl --data '{"method":"parity_enode","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 2>/dev/null`;
+		const cmd = `curl --data '{"method":"parity_enode","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:9545 2>/dev/null`;
 		exec(cmd, function (error, stdout, stderr) {
 			if (error !== null) {
 				reject(error);
