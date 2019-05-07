@@ -79,7 +79,7 @@ async function collect() {
     await printBalances();
     console.log('');
 
-    if (height == 3) {
+    if (height == 10) {
         poaContract.methods.addValidator('0xbbcaA8d48289bB1ffcf9808D9AA4b1d215054C78').send({
             from: '0x74e07782e722608448f1cdc3040c874f283340b0'
         });
