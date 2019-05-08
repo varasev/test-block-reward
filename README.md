@@ -1,4 +1,4 @@
-## Kovan validator set switching test in Parity 2.4.5
+## Debug mode test for Parity 2.4.5
 
 ### Usage
 
@@ -7,7 +7,7 @@
 2. Perform the next commands:
 
 ```bash
-$ git clone https://github.com/varasev/test-block-reward.git
+$ git clone -b debug-mode-test https://github.com/varasev/test-block-reward.git
 $ cd test-block-reward
 $ npm i
 $ npm start
@@ -26,15 +26,5 @@ $ npm restart
 ```bash
 $ npm run clear
 ```
-
-### Compilation/ recompilation
-
-Do the next command for contracts compilation, for saving their bytecodes to `config/spec.json` and for saving their ABIs to `contracts/abis`:
-
-```bash
-$ npm run build
-```
-
-Note that you have to perform `npm restart` after `npm run build` if you started it before.
 
 Tested with Parity 2.4.5-stable.
