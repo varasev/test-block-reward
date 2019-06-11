@@ -1,5 +1,5 @@
 [parity]
-chain = "config/spec.json"
+chain = "config/spec2.json"
 base_path = "parity_data2"
 
 [ui]

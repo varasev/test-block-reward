@@ -116,7 +116,8 @@ async function collect() {
     web3.eth.sendTransaction({
         from: '0x74e07782e722608448f1cdc3040c874f283340b0',
         to: '0x190ec582090ae24284989af812f6b2c93f768ecd',
-        value: 1000000000
+        value: 1000000000,
+        gasPrice: '0'
     });
 }
 
