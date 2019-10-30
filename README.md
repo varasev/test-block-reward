@@ -1,13 +1,13 @@
-## RewardByBlock contract test in Parity 1.11.x and 2.x
+## RewardByBlock contract test in Parity 2.5.9+
 
 ### Usage
 
-1. Install Parity 1.11.x or 2.x and Node.js 8.11 LTS (with npm) if they are not installed.
+1. Install Parity 2.5.9 and Node.js 8.x LTS (with npm) if they are not installed.
 
 2. Perform the next commands:
 
 ```bash
-$ git clone https://github.com/varasev/test-block-reward.git
+$ git clone https://github.com/varasev/test-block-reward
 $ cd test-block-reward
 $ npm i
 $ npm start
@@ -45,4 +45,4 @@ $ npm run build
 
 Note that you have to perform `npm restart` after `npm run build` if you started it before.
 
-Tested with Parity 1.11.11-stable, 2.0.6-stable and 2.1.1-beta.
+Tested with Parity 2.5.9-stable.

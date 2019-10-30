@@ -47,7 +47,6 @@ contract RewardByBlock is EternalStorage, IRewardByBlock {
         onlyBridgeContract
     {
         require(_amount != 0);
-        require(_receiver != address(0));
         uint256 oldAmount = extraReceiverAmount(_receiver);
         if (oldAmount == 0) {
             _addExtraReceiver(_receiver);
