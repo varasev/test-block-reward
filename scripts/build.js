@@ -17,6 +17,7 @@ async function main() {
 		'RewardByBlock',
 		'KeysManager',
 		'ProxyStorage',
+		'ValidatorSet',
 	];
 
 	let allSuccess = true;
@@ -76,40 +77,42 @@ async function compileContract(contractName) {
 	let deploy = await contract.deploy({data: bytecode, arguments: []});
 	specJson.accounts[getContractAddress(contractName, true)].constructor = await deploy.encodeABI();
 
-	contractFilename = 'EternalStorageProxy.sol';
+	if (contractName != 'ValidatorSet') {
+		contractFilename = 'EternalStorageProxy.sol';
 
-	console.log(`${contractName} storage compilation...`);
-	compiled = solc.compile({
-		sources: {
-			'': fs.readFileSync(`${contractsPath}eternal-storage/${contractFilename}`).toString()
+		console.log(`${contractName} storage compilation...`);
+		compiled = solc.compile({
+			sources: {
+				'': fs.readFileSync(`${contractsPath}eternal-storage/${contractFilename}`).toString()
+			}
+		}, 1, function (path) {
+			return {contents: fs.readFileSync(`${contractsPath}eternal-storage/${path}`).toString()}
+		});
+
+		if (compiled.errors) {
+			for (let n in compiled.errors) {
+				console.log(`${contractFilename}${compiled.errors[n]}`);
+			}
+			return false;
 		}
-	}, 1, function (path) {
-		return {contents: fs.readFileSync(`${contractsPath}eternal-storage/${path}`).toString()}
-	});
 
-	if (compiled.errors) {
-		for (let n in compiled.errors) {
-			console.log(`${contractFilename}${compiled.errors[n]}`);
+		const abiStr = compiled.contracts[':EternalStorageProxy'].interface;
+		abi = JSON.parse(abiStr);
+		bytecode = compiled.contracts[':EternalStorageProxy'].bytecode;
+
+		let arguments = [
+			getContractAddress('ProxyStorage', false),
+			getContractAddress(contractName, true)
+		];
+
+		if (contractName == 'ProxyStorage') {
+			arguments[0] = '0x0000000000000000000000000000000000000000';
 		}
-		return false;
+
+		contract = new web3.eth.Contract(abi);
+		deploy = await contract.deploy({data: bytecode, arguments: arguments});
+		specJson.accounts[getContractAddress(contractName, false)].constructor = await deploy.encodeABI();
 	}
-
-	const abiStr = compiled.contracts[':EternalStorageProxy'].interface;
-	abi = JSON.parse(abiStr);
-	bytecode = compiled.contracts[':EternalStorageProxy'].bytecode;
-
-	let arguments = [
-		getContractAddress('ProxyStorage', false),
-		getContractAddress(contractName, true)
-	];
-
-	if (contractName == 'ProxyStorage') {
-		arguments[0] = '0x0000000000000000000000000000000000000000';
-	}
-
-	contract = new web3.eth.Contract(abi);
-	deploy = await contract.deploy({data: bytecode, arguments: arguments});
-	specJson.accounts[getContractAddress(contractName, false)].constructor = await deploy.encodeABI();
 
 	return true;
 }
@@ -122,6 +125,8 @@ function getContractAddress(contractName, isImplementation) {
 		return isImplementation ? '0xf845799e5577fcd47374b4375abff380dac74253' : '0xf845799e5577fcd47374b4375abff380dac74254';
 	case 'ProxyStorage':
 		return isImplementation ? '0xf845799e5577fcd47374b4375abff380dac74255' : '0xf845799e5577fcd47374b4375abff380dac74256';
+	case 'ValidatorSet':
+		return '0x7777777777777777777777777777777777777777'
 	default:
 		return '';
 	}

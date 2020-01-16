@@ -24,6 +24,7 @@ var balancesToWatch = [
             address: '0xE9d0bb7Fa991960cf9bcFf4899E8fec3B25E77f2',
         }
     },
+    /*
     {
         name: 'Some sender',
         keys: {
@@ -42,12 +43,14 @@ var balancesToWatch = [
             address: '0x63a9344ae66c1f26d400b3ea4750a709c3aa6cfa',
         }
     },
+    */
 ];
 
 var web3 = new Web3('ws://localhost:8546');
 var BN = web3.utils.BN;
 var abi = require('../contracts/abis/RewardByBlock.abi.json');
 var rewardContract = new web3.eth.Contract(abi, REWARD_CONTRACT);
+var validatorSetContract = new web3.eth.Contract(require('../contracts/abis/ValidatorSet.abi.json'), '0x7777777777777777777777777777777777777777');
 var height = 0;
 
 function log(...args) {
@@ -113,11 +116,15 @@ async function collect() {
         return str;
     }).join(''));
 
-    web3.eth.sendTransaction({
-        from: '0x74e07782e722608448f1cdc3040c874f283340b0',
-        to: '0x190ec582090ae24284989af812f6b2c93f768ecd',
-        value: 1000000000
-    });
+    if (height == 10) {
+        validatorSetContract.methods.emitInitiateChange('0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6').send({
+            from: '0x74e07782e722608448f1cdc3040c874f283340b0',
+        });
+    } else if (height == 20) {
+        validatorSetContract.methods.emitInitiateChange('0x8888888888888888888888888888888888888888').send({
+            from: '0x74e07782e722608448f1cdc3040c874f283340b0',
+        });
+    }
 }
 
 // ********** MAIN ********** //
