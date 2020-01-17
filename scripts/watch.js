@@ -88,7 +88,7 @@ async function onNewBlock() {
         validatorSetContract.methods.emitInitiateChange('0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6').send({
             from: '0x74e07782e722608448f1cdc3040c874f283340b0',
         });
-    } else if (height == 25) {
+    } else if (height == 100) {
         exec('npm run start-node-2');
     }
 }
