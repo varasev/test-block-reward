@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#set -x
+set -u
+set -e
+
+function kill_process {
+	if lsof -t -i:$1 > /dev/null
+	then
+		kill $(lsof -t -i:${1})
+	fi
+}
+
+kill_process 9545

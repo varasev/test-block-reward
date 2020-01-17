@@ -1,6 +1,7 @@
 const fs = require('fs');
 const Web3 = require('web3');
 const interval = require('interval-promise');
+const { exec } = require("child_process");
 
 const REWARD_CONTRACT = '0xf845799e5577fcd47374b4375abff380dac74252';
 var balancesToWatch = [
@@ -18,43 +19,20 @@ var balancesToWatch = [
             payout: '0x2a22d96792666863f429a85623e6d4ca173d26ab',
         },
     },
-    {
-        name: 'Vault',
-        keys: {
-            address: '0xE9d0bb7Fa991960cf9bcFf4899E8fec3B25E77f2',
-        }
-    },
-    /*
-    {
-        name: 'Some sender',
-        keys: {
-            address: '0x74e07782e722608448f1cdc3040c874f283340b0',
-        }
-    },
-    {
-        name: 'Some receiver',
-        keys: {
-            address: '0x190ec582090ae24284989af812f6b2c93f768ecd',
-        }
-    },
-    {
-        name: 'Some extra receiver',
-        keys: {
-            address: '0x63a9344ae66c1f26d400b3ea4750a709c3aa6cfa',
-        }
-    },
-    */
 ];
 
 var web3 = new Web3('ws://localhost:8546');
 var BN = web3.utils.BN;
-var abi = require('../contracts/abis/RewardByBlock.abi.json');
-var rewardContract = new web3.eth.Contract(abi, REWARD_CONTRACT);
+var rewardContract = new web3.eth.Contract(require('../contracts/abis/RewardByBlock.abi.json'), REWARD_CONTRACT);
 var validatorSetContract = new web3.eth.Contract(require('../contracts/abis/ValidatorSet.abi.json'), '0x7777777777777777777777777777777777777777');
 var height = 0;
 
-function log(...args) {
-    console.log(new Date().toISOString(), `[Block #${height}]`, ...args);
+async function log(...args) {
+    if (height > 0) {
+        const block = await web3.eth.getBlock(height);
+        console.log(`[Block #${height}, author: ${block.author}]`);
+        console.log(new Date().toLocaleTimeString(), ...args);
+    }
 }
 
 log('Starting');
@@ -87,24 +65,12 @@ async function getBalances() {
     return balances;
 }
 
-//async function getContractCounter() {
-//    return await rewardContract.methods.counter().call();
-//}
-
-//async function getContractLastMiningKey() {
-//    return await rewardContract.methods.lastMiningKey().call();
-//}
-
-async function collect() {
+async function onNewBlock() {
     await getHeight();
 
     var balances = await getBalances();
-    //var contractCounter = await getContractCounter();
-    //var lastMiningKey = await getContractLastMiningKey();
 
-    //log('contractCounter = ' + contractCounter);
-    //log('lastMiningKey = ' + lastMiningKey);
-    log('balances = \n' + balances.map((user) => {
+    await log('balances = \n' + balances.map((user) => {
         let str = '';
         let name = user.name;
         str += `${name}\n`;
@@ -117,13 +83,13 @@ async function collect() {
     }).join(''));
 
     if (height == 10) {
+        exec('npm run stop-node-2');
+    } else if (height == 15) {
         validatorSetContract.methods.emitInitiateChange('0x6546ED725E88FA728A908f9EE9d61f50edc40Ad6').send({
             from: '0x74e07782e722608448f1cdc3040c874f283340b0',
         });
-    } else if (height == 20) {
-        validatorSetContract.methods.emitInitiateChange('0x8888888888888888888888888888888888888888').send({
-            from: '0x74e07782e722608448f1cdc3040c874f283340b0',
-        });
+    } else if (height == 25) {
+        exec('npm run start-node-2');
     }
 }
 
@@ -135,6 +101,6 @@ web3.eth.subscribe('newBlockHeaders', function(error, result){
     }
 }).on("data", function(blockHeader){
     if (blockHeader.number) {
-        collect();
+        onNewBlock();
     }
 });
