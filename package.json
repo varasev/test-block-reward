@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "start": "npm run start-node-1 && node ./scripts/prepareNode2 && npm run start-node-2 && npm run watch",
-    "start-node-1": "parity --config ./config/node1.toml > ./parity_data1/log 2>&1 &",
-    "start-node-2": "parity --config ./config/node2.toml > ./parity_data2/log 2>&1 &",
+    "start-node-1": "../test-staking-dapp/parity-ethereum/target/release/parity --config ./config/node1.toml > ./parity_data1/log 2>&1 &",
+    "start-node-2": "../test-staking-dapp/parity-ethereum/target/release/parity --config ./config/node2.toml > ./parity_data2/log 2>&1 &",
     "stop": "bash ./scripts/stop-nodes",
     "accrue": "node ./scripts/accrue.js",
     "watch": "node ./scripts/watch.js",

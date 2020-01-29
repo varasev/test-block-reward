@@ -1,35 +1,27 @@
-## RewardByBlock contract test in Parity 2.6.5+
+## RandomAuRa contract test in Parity 2.7.0+
 
 ### Usage
 
-1. Install Parity 2.6.5-beta and Node.js 8.x LTS (with npm) if they are not installed.
+1. Get Parity 2.7.0+ and Node.js 8.x LTS (with npm). Fix the path to `parity` binary in `package.json`.
 
 2. Perform the next commands:
 
 ```bash
-$ git clone https://github.com/varasev/test-block-reward
+$ git clone -b randao-activation https://github.com/varasev/test-block-reward
 $ cd test-block-reward
 $ npm i
 $ npm start
 ```
 
-3. Watch a log in the console. It should be seen that `payoutKey` balances are being increased alternately by 1 eth and the vault's balance is being increased by 1 eth every 5 seconds. We also can see that the gas fee is being accrued alternately to mining keys when a sender transfers some amount to a receiver. An example log is available here: https://github.com/varasev/test-block-reward/blob/master/example.log
+3. Watch node logs. It should be seen that there are two transactions made every 10 blocks after the block #20.
 
-4. To make charging of one coin to an extra receiver's account, perform the next command:
-
-```bash
-$ npm run accrue 1
-```
-
-You'll see in the log that the balance of an extra receiver increased by one coin on the next block.
-
-5. To restart this setup from scratch, perform the next command:
+4. To restart this setup from scratch, perform the next command:
 
 ```bash
 $ npm restart
 ```
 
-6. To completely stop and clear, perform the next command:
+5. To completely stop and clear, perform the next command:
 
 ```bash
 $ npm run clear
@@ -44,5 +36,3 @@ $ npm run build
 ```
 
 Note that you have to perform `npm restart` after `npm run build` if you started it before.
-
-Tested with Parity 2.6.5-beta.

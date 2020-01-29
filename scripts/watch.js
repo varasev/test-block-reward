@@ -24,6 +24,7 @@ var balancesToWatch = [
             address: '0xE9d0bb7Fa991960cf9bcFf4899E8fec3B25E77f2',
         }
     },
+    /*
     {
         name: 'Some sender',
         keys: {
@@ -42,6 +43,7 @@ var balancesToWatch = [
             address: '0x63a9344ae66c1f26d400b3ea4750a709c3aa6cfa',
         }
     },
+    */
 ];
 
 var web3 = new Web3('ws://localhost:8546');
@@ -113,11 +115,13 @@ async function collect() {
         return str;
     }).join(''));
 
+    /*
     web3.eth.sendTransaction({
         from: '0x74e07782e722608448f1cdc3040c874f283340b0',
         to: '0x190ec582090ae24284989af812f6b2c93f768ecd',
         value: 1000000000
     });
+    */
 }
 
 // ********** MAIN ********** //
