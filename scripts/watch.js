@@ -125,6 +125,40 @@ async function collect() {
     console.log(`currentSeed = ${currentSeed}`);
     console.log('');
 
+    const block = await web3.eth.getBlock(height, true);
+
+    let txSuccess = [];
+    let txFail = [];
+
+    for (let i = 0; i < block.transactions.length; i++) {
+        const tx = block.transactions[i];
+        const txReceipt = await web3.eth.getTransactionReceipt(tx.hash);
+        const txObject = {from: tx.from, to: tx.to, gasPrice: tx.gasPrice, gasLimit: tx.gas, nonce: tx.nonce, receipt: txReceipt};
+        if (txReceipt.status) {
+            txSuccess.push(txObject);
+        } else {
+            txFail.push(txObject);
+        }
+    }
+
+    if (txSuccess.length > 0) {
+        console.log('SUCCESS transactions:');
+        txSuccess.forEach((tx) => {
+            console.log(`  ${tx.from} => ${tx.to}`);
+            console.log(`    gas used: ${tx.receipt.gasUsed}/${tx.gasLimit}, gas price: ${tx.gasPrice}, nonce: ${tx.nonce}`);
+        });
+        console.log('');
+    }
+
+    if (txFail.length > 0) {
+        console.log('FAILED transactions:');
+        txFail.forEach((tx) => {
+            console.log(`  ${tx.from} => ${tx.to}`);
+            console.log(`    gas used: ${tx.receipt.gasUsed}/${tx.gasLimit}, gas price: ${tx.gasPrice}, nonce: ${tx.nonce}`);
+        });
+        console.log('');
+    }
+
     /*
     web3.eth.sendTransaction({
         from: '0x74e07782e722608448f1cdc3040c874f283340b0',
