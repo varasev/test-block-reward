@@ -1,28 +1,5 @@
 [
   {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_collectRound",
-        "type": "uint256"
-      },
-      {
-        "name": "_miningAddress",
-        "type": "address"
-      }
-    ],
-    "name": "getCipher",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bytes"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "constant": false,
     "inputs": [
       {
@@ -170,43 +147,6 @@
     "type": "function"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "isRevealPhase",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_collectRound",
-        "type": "uint256"
-      },
-      {
-        "name": "_miningAddress",
-        "type": "address"
-      }
-    ],
-    "name": "getCommit",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "constant": false,
     "inputs": [
       {
@@ -219,11 +159,5 @@
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
-  },
-  {
-    "inputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor"
   }
 ]

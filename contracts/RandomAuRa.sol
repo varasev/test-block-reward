@@ -10,14 +10,10 @@ contract RandomAuRa {
     mapping(uint256 => mapping(address => bool)) internal _sentReveal;
 
     /// @dev The length of the collection round (in blocks).
-    uint256 public collectRoundLength;
+    uint256 public constant collectRoundLength = 20;
 
     /// @dev The current random seed accumulated.
     uint256 public currentSeed;
-
-    constructor() public {
-        collectRoundLength = 20;
-    }
 
     /// @dev Called by the validator's node to store a hash and a cipher of the validator's number on each collection
     /// round. The validator's node must use its mining address (engine_signer) to call this function.
@@ -50,37 +46,22 @@ contract RandomAuRa {
         uint256 collectRound = currentCollectRound();
 
         require(block.coinbase == miningAddress);
-        require(isRevealPhase()); // must only be called in `reveal phase`
+        require(!isCommitPhase()); // must only be called in `reveal phase`
         require(numberHash != bytes32(0));
-        require(numberHash == getCommit(collectRound, miningAddress)); // the hash must be commited
+        require(numberHash == _commits[collectRound][miningAddress]); // the hash must be commited
         require(!_sentReveal[collectRound][miningAddress]); // cannot reveal more than once during the same collect round
 
         currentSeed = currentSeed ^ _number;
+
         _sentReveal[collectRound][miningAddress] = true;
+        delete _commits[collectRound][miningAddress];
+        delete _ciphers[collectRound][miningAddress];
     }
 
     /// @dev Returns the serial number of the current collection round.
     /// Needed when using `getCommit`, `isCommitted`, `sentReveal`, or `getCipher` getters (see below).
     function currentCollectRound() public view returns(uint256) {
         return (block.number - 1) / collectRoundLength;
-    }
-
-    /// @dev Returns the cipher of the validator's number for the specified collection round and the specified validator
-    /// stored by the validator through the `commitHash` function.
-    /// @param _collectRound The serial number of the collection round for which the cipher should be retrieved.
-    /// Should be read with `currentCollectRound()` getter.
-    /// @param _miningAddress The mining address of validator (engine_signer).
-    function getCipher(uint256 _collectRound, address _miningAddress) public view returns(bytes memory) {
-        return _ciphers[_collectRound][_miningAddress];
-    }
-
-    /// @dev Returns the Keccak-256 hash of the validator's number for the specified collection round and the specified
-    /// validator stored by the validator through the `commitHash` function.
-    /// @param _collectRound The serial number of the collection round for which the hash should be retrieved.
-    /// Should be read with `currentCollectRound()` getter.
-    /// @param _miningAddress The mining address of validator (engine_signer).
-    function getCommit(uint256 _collectRound, address _miningAddress) public view returns(bytes32) {
-        return _commits[_collectRound][_miningAddress];
     }
 
     /// @dev Returns the Keccak-256 hash and cipher of the validator's number for the specified collection round
@@ -118,13 +99,6 @@ contract RandomAuRa {
     function isCommitPhase() public view returns(bool) {
         uint256 commitPhaseLength = collectRoundLength / 2;
         return ((block.number - 1) % collectRoundLength) < commitPhaseLength;
-    }
-
-    /// @dev Returns a boolean flag indicating whether the current phase of the current collection round
-    /// is a `reveal phase`. Used by the validator's node to determine if it should reveal the number during
-    /// the current collection round.
-    function isRevealPhase() public view returns(bool) {
-        return !isCommitPhase();
     }
 
 }

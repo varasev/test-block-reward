@@ -46,10 +46,16 @@ var balancesToWatch = [
     */
 ];
 
+const RANDOM_CONTRACT = '0x3000000000000000000000000000000000000001';
+
 var web3 = new Web3('ws://localhost:8546');
 var BN = web3.utils.BN;
 var abi = require('../contracts/abis/RewardByBlock.abi.json');
 var rewardContract = new web3.eth.Contract(abi, REWARD_CONTRACT);
+var randomContract = new web3.eth.Contract(
+    require('../contracts/abis/RandomAuRa.abi.json'),
+    RANDOM_CONTRACT
+);
 var height = 0;
 
 function log(...args) {
@@ -114,6 +120,10 @@ async function collect() {
         }
         return str;
     }).join(''));
+
+    const currentSeed = await randomContract.methods.currentSeed().call();
+    console.log(`currentSeed = ${currentSeed}`);
+    console.log('');
 
     /*
     web3.eth.sendTransaction({
