@@ -1,8 +1,10 @@
-## RandomAuRa contract test in Parity 2.7.0+
+## RandomAuRa contract test in Parity 2.7.1+
 
 ### Usage
 
-1. Get Parity 2.7.0+ and Node.js 8.x LTS (with npm). Fix the path to `parity` binary in `package.json`.
+1. Install Parity 2.7.1+ and Node.js 8.x LTS (with npm).
+
+    If your Parity installed not to `/usr/bin` or `/usr/local/bin`, change the path to the binary in `package.json`.
 
 2. Perform the next commands:
 
@@ -13,7 +15,7 @@ $ npm i
 $ npm start
 ```
 
-3. Watch node logs. It should be seen that there are two transactions made every 10 blocks after the block #20.
+3. Watch node logs. It should be seen that there are two transactions made every 10 blocks after the block #20. You also can see the `currentSeed` in the log displayed through console.
 
 4. To restart this setup from scratch, perform the next command:
 
