@@ -2,7 +2,7 @@
 
 ### Usage
 
-1. Install Parity 2.7.1+ and Node.js 8.x LTS (with npm).
+1. Install Parity 2.7.2+ and Node.js 8.x LTS (with npm).
 
     If your Parity installed not to `/usr/bin` or `/usr/local/bin`, change the path to the binary in `package.json`.
 
