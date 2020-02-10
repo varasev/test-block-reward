@@ -1,4 +1,4 @@
-## RandomAuRa contract test in Parity 2.7.1+
+## RandomAuRa contract test in Parity 2.7.2+
 
 ### Usage
 
