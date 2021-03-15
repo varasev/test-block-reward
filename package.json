@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "start": "npm run start-node-1 && node ./scripts/prepareNode2 && npm run start-node-2 && npm run watch",
-    "start-node-1": "parity --config ./config/node1.toml > ./parity_data1/log 2>&1 &",
-    "start-node-2": "parity --config ./config/node2.toml > ./parity_data2/log 2>&1 &",
+    "start-node-1": "openethereum --config ./config/node1.toml > ./parity_data1/log 2>&1 &",
+    "start-node-2": "openethereum --config ./config/node2.toml > ./parity_data2/log 2>&1 &",
     "stop": "bash ./scripts/stop-nodes",
     "accrue": "node ./scripts/accrue.js",
     "watch": "node ./scripts/watch.js",
@@ -19,6 +19,6 @@
     "interval-promise": "^1.1.1",
     "solc": "^0.4.24",
     "solhint": "^1.2.1",
-    "web3": "^1.0.0-beta.34"
+    "web3": "1.0.0-beta.34"
   }
 }

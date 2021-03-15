@@ -1,8 +1,8 @@
-## RewardByBlock contract test in Parity 2.6.5+
+## RewardByBlock contract test in OpenEthereum 3.1
 
 ### Usage
 
-1. Install Parity 2.6.5-beta and Node.js 8.x LTS (with npm) if they are not installed.
+1. Install OpenEthereum 3.1 and Node.js 8.x LTS (with npm) if they are not installed.
 
 2. Perform the next commands:
 
@@ -44,5 +44,3 @@ $ npm run build
 ```
 
 Note that you have to perform `npm restart` after `npm run build` if you started it before.
-
-Tested with Parity 2.6.5-beta.
